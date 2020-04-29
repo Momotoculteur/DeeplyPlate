@@ -1,5 +1,5 @@
 # Deeply Plate
-![logo](./src/assets/icoN/icon_resized.png)
+![logo](./src/assets/icon/icon_resized.png)
 
 ## Description
 Article complet sur l'intégration disponible sur mon blog :
