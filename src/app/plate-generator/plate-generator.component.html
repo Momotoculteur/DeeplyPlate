@@ -1,1 +1,32 @@
-<p>plate-generator works!</p>
+<div fxFlexFill fxLayout="row">
+    <!--------------------   FLEX REGION ROW | PARAMETRE   ------------------------>
+    <div fxFlex>
+        <div fxLayout="row" >
+            <div fxLayout="column" fxFlexAlign="center">
+                <div fxLayout="start" class="label" fxFlexAlign="center">
+                    Largeur (pixel)
+                </div>
+                <div fxLayout="start" class="label" fxFlexAlign="center">
+                    Longueur (pixel)
+                </div>
+            </div>
+            <div fxLayout="column" fxFlexAlign="center">
+                <mat-form-field fxLayout="end">
+                    <input matInput [(ngModel)]="plateWidth" (ngModelChange)="updatePlateWidth()">
+                </mat-form-field>
+                <mat-form-field fxLayout="end">
+                    <input matInput [(ngModel)]="plateheight" (ngModelChange)="updatePlateHeight()">
+                </mat-form-field>
+            </div>    
+        </div>
+           
+                
+                
+    </div>
+    <!--------------------   FLEX REGION ROW | APERCU   ------------------------>
+    <div style="background-color: white;" fxLayout="row" fxLayoutAlign="center" fxLayout="column">
+        <div class="canvasContener" [ngStyle]="{'width.px': plateWidth, 'height.px': plateheight}">
+            <canvas fxFlex #canvas></canvas>
+        </div>
+    </div>
+</div>

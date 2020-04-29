@@ -39,6 +39,7 @@
     "@angular/language-service": "~9.1.1",
     "@types/node": "^12.11.1",
     "@zerollup/ts-transform-paths": "^1.7.17",
+    "canvas": "^2.6.1",
     "codelyzer": "^5.1.2",
     "electron": "^8.2.4",
     "electron-builder": "^22.5.1",
