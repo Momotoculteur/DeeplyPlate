@@ -13,8 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { WelcomeModule } from './welcome/welcome.module';
-import { PlateGeneratorComponent } from './plate-generator/plate-generator.component';
-import { PlateIncrustatorComponent } from './plate-incrustator/plate-incrustator.component';
+import { PlateGeneratorModule } from './plate-generator/plate-generator.module';
+import { PlateIncrustatorModule } from './plate-incrustator/plate-incrustator.module';
 
 
 @NgModule({
@@ -22,8 +22,6 @@ import { PlateIncrustatorComponent } from './plate-incrustator/plate-incrustator
         AppComponent,
         FooterComponent,
         HeaderComponent,
-        PlateGeneratorComponent,
-        PlateIncrustatorComponent
     ],
     imports: [
         BrowserModule,
@@ -36,7 +34,9 @@ import { PlateIncrustatorComponent } from './plate-incrustator/plate-incrustator
         MatButtonModule,
         MatMenuModule,
         BrowserAnimationsModule,
-        WelcomeModule
+        WelcomeModule,
+        PlateGeneratorModule,
+        PlateIncrustatorModule
     ],
     providers: [],
     bootstrap: [AppComponent]
