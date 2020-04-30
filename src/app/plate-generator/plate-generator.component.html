@@ -1,28 +1,101 @@
 <div fxFlexFill fxLayout="row">
     <!--------------------   FLEX REGION ROW | PARAMETRE   ------------------------>
-    <div fxFlex>
-        <div fxLayout="row" >
-            <div fxLayout="column" fxFlexAlign="center">
-                <div fxLayout="start" class="label" fxFlexAlign="center">
-                    Largeur (pixel)
+    <div fxFlex fxLayout="column">
+
+
+        <div fxFlex fxLayout="column">
+            <h2 class="title" fxFlexAlign="center">Dimensions plaque</h2>
+            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                <div fxLayout="column"  fxLayoutGap="10px">
+                    <div fxLayout="start" class="label">
+                        Largeur
+                    </div>
+                    <div fxLayout="start" class="label">
+                        Longueur
+                    </div>
+                    <div fxLayout="start" class="label">
+                        Largeur parties bleues
+                    </div>
                 </div>
-                <div fxLayout="start" class="label" fxFlexAlign="center">
-                    Longueur (pixel)
+                <div fxLayout="column" fxLayoutGap="10px">
+                    <mat-form-field fxLayout="end">
+                        <span matSuffix class="suffix">px</span>
+                        <input matInput [(ngModel)]="plateWidth" (ngModelChange)="updatePlateWidth()">
+                    </mat-form-field>
+                    <mat-form-field fxLayout="end">
+                        <span matSuffix class="suffix">px</span>
+                        <input matInput [(ngModel)]="plateheight" (ngModelChange)="updatePlateHeight()">
+                    </mat-form-field>
+                    <mat-form-field fxLayout="end">
+                        <span matSuffix class="suffix">px</span>
+                        <input matInput [(ngModel)]="bluePartWidth" (ngModelChange)="redrawCompleteBlueParts()">
+                    </mat-form-field>
+                </div>    
+            </div>
+        </div>  
+
+
+        <mat-divider></mat-divider>
+
+
+        <!--------------------   NATION   ------------------------>
+        <div fxFlex fxLayout="column" fxLayoutAlign="space-evenly">
+            <h2 class="title" fxFlexAlign="center">Nation</h2>
+            <div fxFlex fxLayout="row" fxFlexAlign="center">
+                <mat-form-field>
+                    <mat-select (selectionChange)="updateFiltredDataCountry()" multiple [(value)]="selectedCountries">
+                    <mat-option *ngFor="let country of allCountry" [value]="country">
+                        {{country.name}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+
+        <!--------------------   REGION   ------------------------>
+        <div fxFlex fxLayout="column" fxLayoutAlign="space-evenly">
+            <h2 class="title" fxFlexAlign="center">Région</h2>
+            <div fxFlex fxLayout="row" fxFlexAlign="center">
+                <mat-form-field>
+                    <mat-select (selectionChange)="updateFiltredDataRegion()" multiple [(value)]="selectedRegions">
+                    <mat-option *ngFor="let region of allRegion" [value]="region">
+                        {{region.code}} - {{region.name}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <mat-divider></mat-divider>
+
+        
+        <!--------------------   GENERATEUR   ------------------------>
+        <div fxFlex fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-evenly">
+            <h2 class="title" fxFlexAlign="center">Générateur</h2>
+            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                <div fxLayout="column" fxFlexAlign="center">
+                    <div fxLayout="start" class="label" fxFlexAlign="center">
+                        Nombre de plaque générés
+                    </div>
+                </div>
+                <div fxLayout="column" fxFlexAlign="center">
+                    <mat-form-field fxLayout="end">
+                        <input matInput [(ngModel)]="numberGeneratedPlate">
+                    </mat-form-field>
                 </div>
             </div>
-            <div fxLayout="column" fxFlexAlign="center">
-                <mat-form-field fxLayout="end">
-                    <input matInput [(ngModel)]="plateWidth" (ngModelChange)="updatePlateWidth()">
-                </mat-form-field>
-                <mat-form-field fxLayout="end">
-                    <input matInput [(ngModel)]="plateheight" (ngModelChange)="updatePlateHeight()">
-                </mat-form-field>
-            </div>    
-        </div>
-           
-                
-                
+            <div fxLayout="row" fxLayoutAlign="space-evenly">
+                <button (click)="reloadDemoData()" color="primary" mat-raised-button>Génèrer une plaque de test</button>
+                <button  color="warn" mat-raised-button>Lancer la génération</button>
+            </div>
+        </div>     
     </div>
+
+
     <!--------------------   FLEX REGION ROW | APERCU   ------------------------>
     <div style="background-color: white;" fxLayout="row" fxLayoutAlign="center" fxLayout="column">
         <div class="canvasContener" [ngStyle]="{'width.px': plateWidth, 'height.px': plateheight}">

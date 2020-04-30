@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ALL_COUNTRY } from '../shared/constant/CCountry';
+import { ALL_REGION } from '../shared/constant/CRegion';
+import { ICountry } from '../shared/interface/ICountry';
+import { IRegion } from '../shared/interface/IRegion';
 
 @Component({
     selector: 'app-plate-generator',
@@ -15,13 +19,20 @@ export class PlateGeneratorComponent implements OnInit {
     public plateheight: number;
     public bluePartWidth: number;
 
+    public allCountry: ICountry[];
+    public allRegion: IRegion[];
 
+    public selectedCountries: ICountry[];
+    public selectedRegions: IRegion[];
 
-    public plateCountry;
-    public plateRegion;
+    public plateCountry: string;
+    public plateRegion: string;
     public plateZone1: string;
     public plateZone2: string;
     public plateZone3: string;
+    
+
+    public numberGeneratedPlate: number;
 
     
     constructor() { 
@@ -33,16 +44,29 @@ export class PlateGeneratorComponent implements OnInit {
         this.plateheight = 110;
         this.bluePartWidth = 60;
 
-        this.plateZone1 = this.generateRandomAlphaNumeric(2, false, true);
-        this.plateZone2 = this.generateRandomAlphaNumeric(3, true, false);
-        this.plateZone3 = this.generateRandomAlphaNumeric(2, false, true);
+
+        this.allCountry = ALL_COUNTRY;
+        this.allRegion = ALL_REGION;
+
+        this.selectedCountries = ALL_COUNTRY;
+        this.selectedRegions = ALL_REGION;
+
+        this.numberGeneratedPlate = 1;
+
+        this.reloadDemoData();
+
 
     }
 
-    private reloadDemoData(): void {
+    public reloadDemoData(): void {
         this.plateZone1 = this.generateRandomAlphaNumeric(2, false, true);
         this.plateZone2 = this.generateRandomAlphaNumeric(3, true, false);
         this.plateZone3 = this.generateRandomAlphaNumeric(2, false, true);
+
+        this.plateRegion = this.generateRandomValuesFromArray(this.selectedRegions);
+        this.plateCountry = this.generateRandomValuesFromArray(this.selectedCountries);
+
+        console.log (this.plateCountry + '|||' + this.plateZone1 + '-' + this.plateZone2 + '-' + this.plateZone3 + '|||' +this.plateRegion )
     }
 
     ngOnInit(): void {
@@ -79,9 +103,18 @@ export class PlateGeneratorComponent implements OnInit {
         return result;
     }
 
+    private generateRandomValuesFromArray(arr: any[]): any {
+        return arr[Math.floor(Math.random() * arr.length)].code;
+    }
+
     private redrawCompletePlate(): void {
         this.cleanBackgroundPlate();
         
+    }
+
+    public redrawCompleteBlueParts(): void {
+        this.cleanBackgroundPlate();
+        this.drawBlueParts()
     }
 
     private cleanBackgroundPlate(): void {
@@ -94,6 +127,14 @@ export class PlateGeneratorComponent implements OnInit {
         this.ctx.fillStyle = '#003399';
         this.ctx.fillRect(0, 0, this.bluePartWidth, this.ctx.canvas.height);
         this.ctx.fillRect(this.ctx.canvas.width - this.bluePartWidth , 0, this.bluePartWidth, this.ctx.canvas.height);
+    }
+
+    public updateFiltredDataCountry(): void{
+
+    }
+
+    public updateFiltredDataRegion(): void{
+        
     }
 
 
