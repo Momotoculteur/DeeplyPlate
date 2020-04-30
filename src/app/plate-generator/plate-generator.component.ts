@@ -3,6 +3,8 @@ import { ALL_COUNTRY } from '../shared/constant/CCountry';
 import { ALL_REGION } from '../shared/constant/CRegion';
 import { ICountry } from '../shared/interface/ICountry';
 import { IRegion } from '../shared/interface/IRegion';
+import { ElectronService } from 'ngx-electron';
+import { OpenDialogOptions } from 'electron';
 
 @Component({
     selector: 'app-plate-generator',
@@ -25,6 +27,8 @@ export class PlateGeneratorComponent implements OnInit {
     public selectedCountries: ICountry[];
     public selectedRegions: IRegion[];
 
+    public saveFolder: string;
+
     public plateCountry: string;
     public plateRegion: string;
     public plateZone1: string;
@@ -35,7 +39,9 @@ export class PlateGeneratorComponent implements OnInit {
     public numberGeneratedPlate: number;
 
     
-    constructor() { 
+    constructor(
+        private electronService: ElectronService,
+    ) { 
         this.initializeValues();
     }
 
@@ -63,6 +69,8 @@ export class PlateGeneratorComponent implements OnInit {
         this.plateZone2 = this.generateRandomAlphaNumeric(3, true, false);
         this.plateZone3 = this.generateRandomAlphaNumeric(2, false, true);
 
+        this.saveFolder = '';
+        
         this.plateRegion = this.generateRandomValuesFromArray(this.selectedRegions);
         this.plateCountry = this.generateRandomValuesFromArray(this.selectedCountries);
 
@@ -135,6 +143,18 @@ export class PlateGeneratorComponent implements OnInit {
 
     public updateFiltredDataRegion(): void{
         
+    }
+
+    public selectFolder(): void {
+        const options: OpenDialogOptions = {
+            title: 'Ouvrir un dossier',
+            properties: ['openDirectory'],
+        };
+        let saveDirectory = this.electronService.remote.dialog.showOpenDialogSync(options);
+        if(saveDirectory)
+        {
+            this.saveFolder = saveDirectory[0];
+        }
     }
 
 

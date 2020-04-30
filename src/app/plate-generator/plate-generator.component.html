@@ -77,15 +77,26 @@
         <div fxFlex fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="space-evenly">
             <h2 class="title" fxFlexAlign="center">Générateur</h2>
             <div fxLayout="row" fxLayoutAlign="space-evenly">
-                <div fxLayout="column" fxFlexAlign="center">
+                <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="10px">
                     <div fxLayout="start" class="label" fxFlexAlign="center">
                         Nombre de plaque générés
                     </div>
+                    <div fxLayout="start" class="label" fxFlexAlign="center">
+                        Répertoire de destination
+                    </div>
                 </div>
-                <div fxLayout="column" fxFlexAlign="center">
-                    <mat-form-field fxLayout="end">
+                <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="10px">
+                    <mat-form-field fxLayout="end" fxFlexAlign="center">
                         <input matInput [(ngModel)]="numberGeneratedPlate">
                     </mat-form-field>
+                    <div fxlayout="row" fxLayout="end" fxLayoutAlign="space-evenly" fxFlexAlign="center">
+                        <mat-form-field style="width: 300px;">
+                            <input matInput [(ngModel)]="saveFolder">
+                        </mat-form-field>
+                        <button (click)="selectFolder()" color="warn" mat-icon-button>
+                            <mat-icon>folder_open</mat-icon>
+                        </button>                    
+                    </div>
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-evenly">

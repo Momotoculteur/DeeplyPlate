@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PlateGeneratorComponent } from './plate-generator.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {MatSelectModule} from '@angular/material/select';
         MatButtonModule,
         FlexLayoutModule,
         MatDividerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatIconModule
     ]
 })
 export class PlateGeneratorModule { }
