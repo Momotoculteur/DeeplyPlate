@@ -41,6 +41,7 @@ export class PlateGeneratorComponent implements OnInit {
 
     public plateCountry: string;
     public plateRegion: string;
+    public plateRegionCode: string;
     public plateZone1: string;
     public plateZone2: string;
     public plateZone3: string;
@@ -83,10 +84,11 @@ export class PlateGeneratorComponent implements OnInit {
         this.plateZone2 = this.generateRandomAlphaNumeric(3, true, false);
         this.plateZone3 = this.generateRandomAlphaNumeric(2, false, true);
 
-    
-        this.plateRegion = this.generateRandomValuesFromArray(this.selectedRegions);
+        let tmpRegion = this.generateRandomValuesFromArray(this.selectedRegions);
+        this.plateRegion = tmpRegion.code;
+        this.plateRegionCode = tmpRegion.codeImg;
 
-        this.plateCountry = this.generateRandomValuesFromArray(this.selectedCountries);
+        this.plateCountry = this.generateRandomValuesFromArray(this.selectedCountries).code;
 
         console.log (this.plateCountry + '|||' + this.plateZone1 + '-' + this.plateZone2 + '-' + this.plateZone3 + '|||' +this.plateRegion )
 
@@ -98,6 +100,8 @@ export class PlateGeneratorComponent implements OnInit {
         this.redrawCompletePlate();
 
     }
+
+
 
     ngOnInit(): void {
         this.ctx = this.canvas.nativeElement.getContext('2d');
@@ -114,7 +118,6 @@ export class PlateGeneratorComponent implements OnInit {
             listRegion: this.selectedRegions,
             numberGeneretedPlate: this.numberGeneratedPlate
         };
-        console.log('GOOOOOOOOO')
         this.electronService.ipcRenderer.send('launchGenerator', data);
     }
 
@@ -145,8 +148,11 @@ export class PlateGeneratorComponent implements OnInit {
     }
 
     private generateRandomValuesFromArray(arr: any[]): any {
-        return arr[Math.floor(Math.random() * arr.length)].code;
+        return arr[Math.floor(Math.random() * arr.length)];
     }
+
+
+
 
     public redrawCompletePlate(): void {
         this.cleanBackgroundPlate();
@@ -155,6 +161,9 @@ export class PlateGeneratorComponent implements OnInit {
         this.drawTextPlateNumbers();
         this.drawTextCountry();
         this.drawTextRegion();
+
+        this.drawRegionLogo();
+
     }
 
 
@@ -207,6 +216,15 @@ export class PlateGeneratorComponent implements OnInit {
         this.ctx.fillStyle = '#003399';
         this.ctx.fillRect(0, 0, this.bluePartWidth, this.ctx.canvas.height);
         this.ctx.fillRect(this.ctx.canvas.width - this.bluePartWidth , 0, this.bluePartWidth, this.ctx.canvas.height);
+    }
+
+    public drawRegionLogo(): void {
+        let base_image = new Image();
+        base_image.src = 'assets/region/' + this.plateRegionCode + '.png';
+        base_image.onload = () => {
+            this.ctx.drawImage(base_image, 474, 10, 40, 46);
+        }
+        console.log(base_image.src)
     }
 
     public updateFiltredDataCountry(): void{

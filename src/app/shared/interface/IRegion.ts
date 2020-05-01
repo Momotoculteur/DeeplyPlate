@@ -1,4 +1,5 @@
 export interface IRegion {
     name: string;
-    code: string
+    code: string;
+    codeImg: string;
 }
