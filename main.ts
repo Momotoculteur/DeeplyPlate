@@ -49,3 +49,10 @@ function createWindow () {
 
 app.on('ready', createWindow)
 
+
+ipcMain.on('launchGenerator', (event, message) => {
+    console.log("COMPRIS")
+    console.log(message);
+});
+
+

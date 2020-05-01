@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PlateGeneratorComponent } from './plate-generator.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -21,7 +24,10 @@ import { PlateGeneratorComponent } from './plate-generator.component';
         MatInputModule,
         FormsModule,
         MatButtonModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatDividerModule,
+        MatSelectModule,
+        MatIconModule
     ]
 })
 export class PlateGeneratorModule { }

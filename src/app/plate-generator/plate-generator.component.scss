@@ -5,9 +5,12 @@
     margin-bottom: 0;
 }
 
+
+
 ::ng-deep .mat-form-field-wrapper .mat-form-field-infix{
-    padding: 0;
-    width: 50px;
+    padding-bottom: 0;
+    margin-right: 10px;
+    width: 150px;
     border: 0;
 }
 
@@ -32,3 +35,25 @@ canvas {
     border-width: thin;
     overflow: hidden;
 }
+
+.suffix{
+    color:white;
+}
+
+::ng-deep .mat-form-field-wrapper{
+    margin-bottom: -1.25em;
+}
+
+.title {
+    color:white;
+}
+
+
+.not-empty-select.mat-selected {
+    color: white !important;
+}
+  
+::ng-deep .mat-select-value-text {
+    color: white !important;
+}
+
