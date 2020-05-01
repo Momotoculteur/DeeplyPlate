@@ -28,7 +28,7 @@
                     </mat-form-field>
                     <mat-form-field fxLayout="end">
                         <span matSuffix class="suffix">px</span>
-                        <input matInput [(ngModel)]="bluePartWidth" (ngModelChange)="redrawCompleteBlueParts()">
+                        <input matInput [(ngModel)]="bluePartWidth" (ngModelChange)="redrawCompletePlate()">
                     </mat-form-field>
                 </div>    
             </div>
@@ -100,8 +100,8 @@
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-evenly">
-                <button (click)="reloadDemoData()" color="primary" mat-raised-button>Génèrer une plaque de test</button>
-                <button  color="warn" mat-raised-button>Lancer la génération</button>
+                <button (click)="reloadNewCompletePlate()" color="primary" mat-raised-button>Génèrer une plaque de test</button>
+                <button (click)="launchGenerator()" color="warn" mat-raised-button>Lancer la génération</button>
             </div>
         </div>     
     </div>
