@@ -2,7 +2,7 @@
     "compileOnSave": true,
     "include": [
         "main.ts",
-        "backend/**/*.ts"
+        "backend/shared/**/*.ts"
     ],
     "exclude": [
     ],

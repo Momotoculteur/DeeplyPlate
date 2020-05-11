@@ -3,11 +3,14 @@ import * as path from 'path';
 import * as url from 'url';
 import { ipcMain, dialog, OpenDialogOptions } from 'electron';
 import * as fs from 'fs';
+import { CommunicatorMannager } from 'backend/communication/CommunicatorManager';
 
 let win;
 let isToolsDev;
 const args = process.argv.slice(1);
 isToolsDev = args.some(val => val === '--dev');
+
+const comManager = new CommunicatorMannager();
 
 
 function createWindow () {
@@ -50,9 +53,6 @@ function createWindow () {
 app.on('ready', createWindow)
 
 
-ipcMain.on('launchGenerator', (event, message) => {
-    console.log("COMPRIS")
-    console.log(message);
-});
+
 
 

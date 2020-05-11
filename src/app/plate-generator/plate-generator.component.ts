@@ -163,6 +163,7 @@ export class PlateGeneratorComponent implements OnInit {
         this.drawTextRegion();
 
         this.drawRegionLogo();
+        this.drawEuropeLogo();
 
     }
 
@@ -224,7 +225,14 @@ export class PlateGeneratorComponent implements OnInit {
         base_image.onload = () => {
             this.ctx.drawImage(base_image, 474, 10, 40, 46);
         }
-        console.log(base_image.src)
+    }
+
+    public drawEuropeLogo(): void {
+        let base_image = new Image();
+        base_image.src = 'assets/region/europe.png';
+        base_image.onload = () => {
+            this.ctx.drawImage(base_image, 5, 10, 40, 40);
+        }
     }
 
     public updateFiltredDataCountry(): void{
