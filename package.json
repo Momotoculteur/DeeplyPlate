@@ -41,7 +41,7 @@
     "@zerollup/ts-transform-paths": "^1.7.17",
     "canvas": "^2.6.1",
     "codelyzer": "^5.1.2",
-    "electron": "^8.2.4",
+    "electron": "^22.3.25",
     "electron-builder": "^22.5.1",
     "electron-reload": "^1.5.0",
     "electron-store": "^5.1.1",
